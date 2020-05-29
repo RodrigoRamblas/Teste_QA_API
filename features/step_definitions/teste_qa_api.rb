@@ -1,7 +1,8 @@
 api     = API.new
+cep     = CEP.new
 
 Quando("eu faço um post com um CEP válido") do
-    $cep = api.cep_valido                              
+    $cep = cep.cep_valido                              
     $json_cep_valido = JSON.parse(api.generate_cep_api('https://viacep.com.br/ws/' + $cep + '/json/'))
     p 'Código do IBGE: ' + $json_cep_valido["ibge"]
 end                                                                          
@@ -11,7 +12,7 @@ Então("o resultado é um JSON com os dados do CEP") do
 end                                                                          
                                                                                
 Quando("eu faço um post com um CEP inválido") do   
-    $cep = api.cep_invalido                         
+    $cep = cep.cep_invalido                         
     $cep_invalido = api.generate_cep_api('https://viacep.com.br/ws/' + $cep + '/json/')
 end                                                                          
                                                                                
